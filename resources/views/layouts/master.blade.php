@@ -9,6 +9,9 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/icon/garuda.jpg">
+
     <!-- Title Page-->
     <title>@yield('title')</title>
 
@@ -165,23 +168,23 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="{{ url('/home') }}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="chart.html">
+                            <a href="{{ url('/user') }}">
                                 <i class="fas fa-user"></i>User</a>
                         </li>
                         <li>
-                            <a href="table.html">
+                            <a href="{{ url('/aircraft-list') }}">
                                 <i class="fas fa-plane"></i>Aircraft List</a>
                         </li>
                         <li>
-                            <a href="form.html">
+                            <a href="{{ url('/aircraft-utilization') }}">
                                 <i class="far fa-check-square"></i>aircraft utilization</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ url('/searching') }}">
                                 <i class="fab fa-searchengin"></i>Searching and Filter</a>
                         </li>
 

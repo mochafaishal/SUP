@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('/user', 'UserController@index')->name('user');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/aircraft-list', 'AircraftListController@index')->name('aircraft-list');
+
+Route::get('/aircraft-utilization', 'AircraftUtilizationController@index')->name('aircraft-utilization');
+
+Route::get('/searching', 'SearchingController@index')->name('searching');
