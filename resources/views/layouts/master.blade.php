@@ -23,6 +23,7 @@
 
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+ 
 
     <!-- Vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
@@ -167,23 +168,23 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                        <li class="{{ request()->is('home') ? 'active' : '' }}">
                             <a class="js-arrow" href="{{ url('/home') }}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        <li>
+                        <li class="{{ request()->is('user') ? 'active' : '' }}">
                             <a href="{{ url('/user') }}">
                                 <i class="fas fa-user"></i>User</a>
                         </li>
-                        <li>
+                        <li class="{{ request()->is('aircraft-list') ? 'active' : '' }}">
                             <a href="{{ url('/aircraft-list') }}">
                                 <i class="fas fa-plane"></i>Aircraft List</a>
                         </li>
-                        <li>
+                        <li class="{{ request()->is('aircraft-utilization') ? 'active' : '' }}">
                             <a href="{{ url('/aircraft-utilization') }}">
                                 <i class="far fa-check-square"></i>aircraft utilization</a>
                         </li>
-                        <li>
+                        <li class="{{ request()->is('seraching') ? 'active' : '' }}">
                             <a href="{{ url('/searching') }}">
                                 <i class="fab fa-searchengin"></i>Searching and Filter</a>
                         </li>
