@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Aircraft;
+use App\User;
+use App\Maintenance;
+use App\Maintenancereserve;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $aircraft = Aircraft::all();
+        $maintenance = Maintenance::all();
+        $maintenancereserve = Maintenancereserve::All();
+        $user = User::All();
+
+        return view('home', ['aircraft' => $aircraft, 'maintenance' => $maintenance, 'maintenancereserve' => $maintenancereserve, 'user' => $user]);
     }
+
+  
 }

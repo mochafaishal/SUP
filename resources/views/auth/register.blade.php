@@ -39,6 +39,15 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                                                        <label for="vat" class=" form-control-label">Role</label>
+                                                        <select name="role" id="role" type="text" class="form-control">
+                                                            <option value="0">manager</option>
+                                                            <option value="1">admin</option>
+                                                            <option value="2">user</option>
+                                                        </select>
+                                                    </div>
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

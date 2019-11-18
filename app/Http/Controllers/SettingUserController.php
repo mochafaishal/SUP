@@ -8,6 +8,6 @@ class SettingUserController extends Controller
 {
   public function index()
   {
-      return view('setting-user');
+      return view('user.setting-user');
   }
 }
