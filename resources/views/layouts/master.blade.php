@@ -176,13 +176,25 @@
                             <a href="{{ url('/user') }}">
                                 <i class="fas fa-user"></i>User</a>
                         </li>
+                        <li class="{{ request()->is('maintenance') ? 'active' : '' }}">
+                            <a href="{{ url('/maintenance') }}">
+                                <i class="fas fa-calendar"></i>Maintenance</a>
+                        </li>
+                        <li class="{{ request()->is('angine') ? 'active' : '' }}">
+                            <a href="{{ url('/angine') }}">
+                                <i class="fas fa-cogs"></i>Angine</a>
+                        </li>
                         <li class="{{ request()->is('aircraft-list') ? 'active' : '' }}">
                             <a href="{{ url('/aircraft-list') }}">
                                 <i class="fas fa-plane"></i>Aircraft List</a>
                         </li>
                         <li class="{{ request()->is('aircraft-utilization') ? 'active' : '' }}">
                             <a href="{{ url('/aircraft-utilization') }}">
-                                <i class="far fa-check-square"></i>aircraft utilization</a>
+                                <i class="far fa-check-square"></i>Aircraft Utilization</a>
+                        </li>
+                        <li class="{{ request()->is('maintenance-reserve') ? 'active' : '' }}">
+                            <a href="{{ url('/maintenance-reserve') }}">
+                                <i class="far fa-pencil-square-o"></i>Maintenance Reserve</a>
                         </li>
                         <li class="{{ request()->is('seraching') ? 'active' : '' }}">
                             <a href="{{ url('/searching') }}">
@@ -345,17 +357,14 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                    <a href="{{ url('profile') }}">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                    <a href="{{ url('setting-user') }}">
                                                         <i class="zmdi zmdi-settings"></i>Setting</a>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                </div>
+                                        
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="{{ route('logout') }}"  onclick="event.preventDefault();
