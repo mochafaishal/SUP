@@ -286,10 +286,10 @@
                                                 <td class="text-left">
                                                 @foreach($aircraft->maintenance as $m)
                                                     
-                                                    @php $b = floor($i/$m->value); $c=$m->value @endphp
+                                                    @php $b = floor($i/$m->implementation); $c=$m->implementation @endphp
                                                     @for ($a = 0; $a < $b; $a++)
                                                     <li>{{ Carbon\Carbon::parse($aircraft->start_date)->addYear($c)->format('d-m-Y') }} </li>
-                                                    @php $c = $c+$m->value @endphp
+                                                    @php $c = $c+$m->implementation @endphp
                                                     @endfor
                                                    <br>
                                                 @endforeach

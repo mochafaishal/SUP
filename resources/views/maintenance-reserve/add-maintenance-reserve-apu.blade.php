@@ -48,14 +48,6 @@
                                                         <label for="vat" class=" form-control-label">FC</label>
                                                         <input type="text" id="vat" name="fc" placeholder="Enter Engine 1 Flight Time Since New" class="form-control">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="vat" class=" form-control-label">TSN :</label>
-                                                        <span class="role member">2567</span>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="vat" class=" form-control-label">CSN :</label>
-                                                        <span class="role member">1343</span>
-                                                    </div>
                                                 </div>
 
                                                 <button type="submit" class="bbtn btn-primary btn-lg btn-block mt-3">Save</button>
