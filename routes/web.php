@@ -94,3 +94,4 @@ Route::post('/add-maintenance-reserve-landing/storelanding', 'MaintenanceReserve
 
 // export excel
 Route::get('/maintenance-reserve-report/export_excel', 'MaintenanceReserveController@export_excel');
+Route::get('/maintenance-reserve-export', 'MaintenanceReserveController@export');

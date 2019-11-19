@@ -63,7 +63,25 @@ class MaintenanceReserveController extends Controller
   public function cetak_pdf($id)
   {
       $maintenancereserve = Maintenancereserve::find($id);
-      $pdf = PDF::loadview('maintenance-reserve.maintenancereserve_pdf',['maintenancereserve'=>$maintenancereserve]);
+
+      $airframe = airframe::where('aircraft_id',$maintenancereserve->aircraft_id)->first();
+      $totalairframe = Total::where('airframe_id',$airframe->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+      
+      $engine1 = Engine1::where('aircraft_id',$maintenancereserve->aircraft_id)->first();
+      $totalengine1 = Total::where('engine1_id',$engine1->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+      
+      $engine2 = Engine2::where('aircraft_id',$maintenancereserve->aircraft_id)->first();
+      $totalengine2 = Total::where('engine2_id',$engine2->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+
+      $apu = Apu::where('aircraft_id',$maintenancereserve->aircraft_id)->first();
+      $totalapu = Total::where('apu_id',$apu->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+
+      $landing = Landing::where('aircraft_id',$maintenancereserve->aircraft_id)->first();
+      $totallanding = Total::where('landing_id',$landing->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+
+
+
+      $pdf = PDF::loadview('maintenance-reserve.maintenancereserve_pdf',['maintenancereserve'=>$maintenancereserve, 'totalairframe' => $totalairframe, 'totalengine1' => $totalengine1, 'totalengine2' => $totalengine2, 'totalapu' => $totalapu, 'totallanding' => $totallanding]);
       return $pdf->download('laporan-maintenancereserve.pdf');
   }
 
@@ -386,6 +404,6 @@ class MaintenanceReserveController extends Controller
    
     public function export_excel()
     {
-      return Excel::download(new TotalExport, 'siswa.xlsx');
+      return Excel::download(new TotalExport, 'maintenance-reserve.xlsx');
     }
 }
