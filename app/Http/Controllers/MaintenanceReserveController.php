@@ -81,7 +81,10 @@ class MaintenanceReserveController extends Controller
 
 
 
-      $pdf = PDF::loadview('maintenance-reserve.maintenancereserve_pdf',['maintenancereserve'=>$maintenancereserve, 'totalairframe' => $totalairframe, 'totalengine1' => $totalengine1, 'totalengine2' => $totalengine2, 'totalapu' => $totalapu, 'totallanding' => $totallanding]);
+      $pdf = PDF::setOptions([
+        'logOutputFile' => storage_path('logs/log.htm'),
+        'tempDir' => storage_path('logs/')
+    ])->loadview('maintenance-reserve.maintenancereserve_pdf',['maintenancereserve'=>$maintenancereserve, 'totalairframe' => $totalairframe, 'totalengine1' => $totalengine1, 'totalengine2' => $totalengine2, 'totalapu' => $totalapu, 'totallanding' => $totallanding]);
       return $pdf->download('laporan-maintenancereserve.pdf');
   }
 
