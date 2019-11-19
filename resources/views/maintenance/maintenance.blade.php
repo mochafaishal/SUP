@@ -27,9 +27,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>	
+            <tr>	@php $no = 1; @endphp
     @foreach($maintenance as $m)
-                <td>{{$m->id}}</td>
+                <td>{{ $no++ }}</td>
                 <td>{{$m->maintenance_name}}</td>
                 <td>{{$m->maintenance_type}}</td>
                 <td>Setiap {{$m->implementation}} Tahun</td>

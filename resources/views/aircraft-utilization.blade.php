@@ -24,8 +24,9 @@
         </thead>
         <tbody>
             <tr>
+            @php $no = 1; @endphp
             @foreach($aircraft as $a)
-                <td>{{$a->id}}</td>
+                <td>{{ $no++ }}</td>
                 <td>{{$a->asset_name}}</td>
                 <td>{{$a->serial_no}}</td>
                 <td>{{$a->no_registration}}</td>

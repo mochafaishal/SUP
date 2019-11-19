@@ -29,8 +29,9 @@
         </thead>
         <tbody>
             <tr>
+            @php $no = 1; @endphp
             @foreach($maintenancereserve as $mr)
-                <td>{{$mr->id}}</td>
+                <td>{{ $no++ }}</td>
                 <td>{{$mr->date}}</td>
                 <td>{{$mr->aircraft->asset_name}}</td>
                 <td>{{$mr->aircraft->serial_no}}</td>
