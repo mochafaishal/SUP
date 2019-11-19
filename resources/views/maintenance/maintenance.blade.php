@@ -35,7 +35,7 @@
                 <td>Setiap {{$m->implementation}} Tahun</td>
                 <td>{{$m->payment_type}}</td>
                 <td>{{$m->reserve_rate}}</td>
-                <td>{{$m->estimed_cost}}</td>
+                <td>$ {{ number_format($m->estimed_cost, 2, ',', '.') }}</td>
                 <td>
                     <div class="table-data-feature">
                         <a href="/edit-maintenance/{{ $m->id }}" class="btn btn-info mr-1">Edit</a> <br>

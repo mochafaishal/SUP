@@ -5,7 +5,7 @@
 
     <tr>
         <td>Rate adjustment :</td>
-        <td> {{$maintenancereserve->date}}</td>
+        <td> {{ Carbon\Carbon::parse($maintenancereserve->date)->format('d M  Y') }}</td>
     </tr>
     <tr>
         <td></td>
@@ -35,7 +35,7 @@
             <td>{{$totalengine1->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>$ {{ number_format($maintenancereserve->total->billed_rate, 2, ',', '.') }}</td> 
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
             
             <td>$ {{ number_format($totalengine1->amount_due, 2, ',', '.') }}</td>
         </tr>
