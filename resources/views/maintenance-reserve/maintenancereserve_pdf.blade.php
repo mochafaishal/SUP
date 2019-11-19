@@ -25,8 +25,8 @@ Rate adjustment : <br>
             <td>{{$totalengine1->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalengine1->amount_due}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{$totalengine1->amount_due}}</td>
         </tr>
         <tr>    
             <td>2</td>
@@ -35,8 +35,8 @@ Rate adjustment : <br>
             <td>{{$totalengine2->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalengine2->amount_due}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{$totalengine2->amount_due}}</td>
         </tr>
         <tr>
             <td>3</td>
@@ -45,8 +45,8 @@ Rate adjustment : <br>
             <td>{{$totalengine1->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalengine1->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{$totalengine1->amount_due_fc}}</td>
         </tr>
         <tr>
             <td>4</td>
@@ -55,8 +55,8 @@ Rate adjustment : <br>
             <td>{{$totalengine2->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalengine2->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{$totalengine2->amount_due_fc}}</td>
         </tr>
         <tr>
             <td>5</td>
@@ -65,8 +65,8 @@ Rate adjustment : <br>
             <td>{{$totalairframe->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalairframe->amount_due}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{$totalairframe->amount_due}}</td>
         </tr>
         <tr>
         <td>6</td>
@@ -75,8 +75,8 @@ Rate adjustment : <br>
             <td>{{$totalairframe->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalairframe->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{$totalairframe->amount_due_fc}}</td>
         </tr>
         <tr>
             <td>7</td>
@@ -85,8 +85,8 @@ Rate adjustment : <br>
             <td>{{$totalapu->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalapu->amount_due}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{$totalapu->amount_due}}</td>
         </tr>
         <tr>
             <td>8</td>
@@ -95,8 +95,8 @@ Rate adjustment : <br>
             <td>{{$totalapu->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalapu->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{$totalapu->amount_due_fc}}</td>
         </tr>
         <tr>
             <td>9</td>
@@ -105,8 +105,8 @@ Rate adjustment : <br>
             <td>{{$totallanding->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ 
             {{$totallanding->amount_due}}
             </td>
         </tr>
@@ -117,8 +117,8 @@ Rate adjustment : <br>
             <td>{{$totallanding->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ 
             {{$totallanding->amount_due_fc}}
             </td>
         </tr>
@@ -140,7 +140,7 @@ Rate adjustment : <br>
             <td></td>
             <td>
             @foreach($maintenancereserve->aircraft->maintenance as $m)
-                {{$m->estimed_cost}} <br>
+            $  {{$m->estimed_cost}} <br>
             @endforeach
             </td> 
             <td></td>
@@ -155,7 +155,7 @@ Rate adjustment : <br>
             <td></td>
             <td></td>
             <td ><b>TOTAL </b></td>
-            <td> <b> 
+            <td> <b> $ 
             {{
 
                 ($totalengine1->amount_due)+

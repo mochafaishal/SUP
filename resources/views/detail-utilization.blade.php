@@ -268,27 +268,28 @@
                                                 <td>Maintenance</td>
                                                 <td class="text-left">
                                                 @foreach($aircraft->maintenance as $m)
-                                                <li>{{$m->maintenance_name}}</li>
+                                                {{$m->maintenance_name}} <br>
                                                 @endforeach
                                                 </td> 
                                             </tr>
                                             <tr>
                                                 <td >Tanggal pesawat masuk :</td>
-                                                <td class="text-left">{{$aircraft->start_date}}</td>
+                                                <td class="text-left">{{ Carbon\Carbon::parse($aircraft->start_date)->format('d M  Y') }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tanggal pesawat selesai peminjaman :</td>
-                                                <td class="text-left">{{$aircraft->end_date}}</td>
+                                                <td class="text-left">{{ Carbon\Carbon::parse($aircraft->end_date)->format('d M  Y') }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tanggal maintenance selanjutnya :</td>
                             
                                                 <td class="text-left">
                                                 @foreach($aircraft->maintenance as $m)
-                                                    
+                                                {{$m->maintenance_name}} : <br> <br>
                                                     @php $b = floor($i/$m->implementation); $c=$m->implementation @endphp
-                                                    @for ($a = 0; $a < $b; $a++)
-                                                    <li>{{ Carbon\Carbon::parse($aircraft->start_date)->addYear($c)->format('d-m-Y') }} </li>
+                                                    @for ($a = 0; $a < $b; $a++) 
+                                                    
+                                                    <input class="btn btn-warning mb-3" type="reset" value="{{ Carbon\Carbon::parse($aircraft->start_date)->addYear($c)->format('d M  Y') }} "> <br>
                                                     @php $c = $c+$m->implementation @endphp
                                                     @endfor
                                                    <br>

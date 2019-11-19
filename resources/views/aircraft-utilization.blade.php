@@ -30,8 +30,8 @@
                 <td>{{$a->asset_name}}</td>
                 <td>{{$a->serial_no}}</td>
                 <td>{{$a->no_registration}}</td>
-                <td>{{$a->start_date}}</td>
-                <td>{{$a->end_date}}</td>
+                <td>{{ Carbon\Carbon::parse($a->start_date)->format('d M  Y') }}</td>
+                <td>{{ Carbon\Carbon::parse($a->end_date)->format('d M  Y') }}</td>
                 <td>
                     <div class="table-data-feature">
                     <a href="/detail-aircraft-utilization/{{ $a->id }}" class="btn btn-success mr-1">Lihat Utilisasi</a>

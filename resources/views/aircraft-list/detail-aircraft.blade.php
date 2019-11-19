@@ -206,21 +206,6 @@
                                                 <td>Tanggal pesawat selesai peminjaman :</td>
                                                 <td class="text-left">{{$aircraft->end_date}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Tanggal maintenance selanjutnya :</td>
-                            
-                                                <td class="text-left">
-                                                @foreach($aircraft->maintenance as $m)
-                                                    
-                                                    @php $b = floor($i/$m->implementation); $c=$m->implementation @endphp
-                                                    @for ($a = 0; $a < $b; $a++)
-                                                    <li>{{ Carbon\Carbon::parse($aircraft->start_date)->addYear($c)->format('d-m-Y') }} </li>
-                                                    @php $c = $c+$m->implementation @endphp
-                                                    @endfor
-                                                   <br>
-                                                @endforeach
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

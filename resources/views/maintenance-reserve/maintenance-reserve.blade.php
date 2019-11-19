@@ -32,7 +32,7 @@
             @php $no = 1; @endphp
             @foreach($maintenancereserve as $mr)
                 <td>{{ $no++ }}</td>
-                <td>{{$mr->date}}</td>
+                <td>{{ Carbon\Carbon::parse($mr->date)->format('d M  Y') }}</td>
                 <td>{{$mr->aircraft->asset_name}}</td>
                 <td>{{$mr->aircraft->serial_no}}</td>
                 <td>{{$mr->aircraft->no_registration}}</td>

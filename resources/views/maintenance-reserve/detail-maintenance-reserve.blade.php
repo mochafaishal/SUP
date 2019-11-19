@@ -35,8 +35,9 @@
             <td>{{$totalengine1->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalengine1->amount_due}}</td>
+            <td>$ {{ number_format($maintenancereserve->total->billed_rate, 2, ',', '.') }}</td> 
+            
+            <td>$ {{ number_format($totalengine1->amount_due, 2, ',', '.') }}</td>
         </tr>
         <tr>    
             <td>2</td>
@@ -45,8 +46,8 @@
             <td>{{$totalengine2->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalengine2->amount_due}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{ number_format($totalengine2->amount_due, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>3</td>
@@ -55,8 +56,8 @@
             <td>{{$totalengine1->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalengine1->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{ number_format($totalengine1->amount_due_fc, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>4</td>
@@ -65,8 +66,8 @@
             <td>{{$totalengine2->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalengine2->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{ number_format($totalengine2->amount_due_fc, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>5</td>
@@ -75,8 +76,8 @@
             <td>{{$totalairframe->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalairframe->amount_due}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{ number_format($totalairframe->amount_due, 2, ',', '.') }}</td>
         </tr>
         <td>6</td>
             <td>AIRFRAME - {{  $maintenancereserve->aircraft->airframe->no_registration}}</td>
@@ -84,8 +85,8 @@
             <td>{{$totalairframe->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalairframe->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{ number_format($totalairframe->amount_due_fc, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>7</td>
@@ -94,8 +95,8 @@
             <td>{{$totalapu->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>{{$totalapu->amount_due}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{ number_format($totalapu->amount_due, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>8</td>
@@ -104,8 +105,8 @@
             <td>{{$totalapu->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>{{$totalapu->amount_due_fc}}</td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{ number_format($totalapu->amount_due_fc, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>9</td>
@@ -114,10 +115,8 @@
             <td>{{$totallanding->fh}}</td>
             <td>Hour</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate}}</td> 
-            <td>
-            {{$totallanding->amount_due}}
-            </td>
+            <td>$ {{$maintenancereserve->total->billed_rate}}</td> 
+            <td>$ {{ number_format($totallanding->amount_due, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>10</td>
@@ -126,17 +125,15 @@
             <td>{{$totallanding->fc}}</td>
             <td>Cycle</td>
             <td></td>
-            <td>{{$maintenancereserve->total->billed_rate_fc}}</td> 
-            <td>
-            {{$totallanding->amount_due_fc}}
-            </td>
+            <td>$ {{$maintenancereserve->total->billed_rate_fc}}</td> 
+            <td>$ {{ number_format($totallanding->amount_due_fc, 2, ',', '.') }}</td>
         </tr>
         <tr>
             <td>11</td>
             <td>
             
                 @foreach($maintenancereserve->aircraft->maintenance as $m)
-                {{$m->maintenance_name}} <br>
+                 {{$m->maintenance_name}} <br>
                 @endforeach
                 
             </ul>
@@ -149,7 +146,7 @@
             <td></td>
             <td>
             @foreach($maintenancereserve->aircraft->maintenance as $m)
-                {{$m->estimed_cost}} <br>
+               $ {{ number_format($m->estimed_cost, 2, ',', '.') }} <br>
             @endforeach
             </td> 
             <td></td>
@@ -164,10 +161,9 @@
             <td></td>
             <td></td>
             <td ><b>TOTAL </b></td>
-            <td> <b> 
-            {{
+            <td> <b> $     
 
-                ($totalengine1->amount_due)+
+            {{ number_format(($totalengine1->amount_due)+
                 ($totalengine2->amount_due)+
                 ($totalairframe->amount_due)+
                 ($totalapu->amount_due)+
@@ -177,9 +173,7 @@
                 ($totalengine2->amount_due_fc)+
                 ($totalairframe->amount_due_fc)+
                 ($totalapu->amount_due_fc)+
-                ($totallanding->amount_due_fc)
-
-            }}         
+                ($totallanding->amount_due_fc), 2, ',', '.') }}  
             </b>           
             </td>
         </tr>
