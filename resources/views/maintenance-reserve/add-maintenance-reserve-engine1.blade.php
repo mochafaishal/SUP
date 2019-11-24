@@ -49,7 +49,7 @@
                                                     </div>
                                                 </div>
 
-                                                <button type="submit" class="bbtn btn-primary btn-lg btn-block mt-3">Save</button>
+                                                <button type="submit" class="bbtn btn-primary btn-lg btn-block mt-3">Add</button>
                                                 </form>
                                             </div>
                                         </div>
