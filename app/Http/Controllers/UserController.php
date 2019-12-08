@@ -17,10 +17,30 @@ class UserController extends Controller
   {
       return view('user.add-user');
   }
-
-  public function edit()
+  public function store(Request $request)
   {
-      return view('user.edit-user');
+      $this->validate($request,[
+            
+        'name' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'role' => 'required'
+      ]);
+
+      User::create([
+
+         'name' => $request->name,
+         'email' => $request->email,
+         'password' => $request->password,
+         'role' => $request->role
+      ]);
+
+      return redirect('user');
+  }
+  public function edit($id)
+  {
+      $user = User::find($id);
+      return view('user.edit-user', ['user' => $user]);
   }
 
   public function delete($id)
@@ -29,4 +49,23 @@ class UserController extends Controller
       $user->delete();
       return redirect('/user');
   }
+
+  public function update($id, Request $request)
+{
+    $this->validate($request,[
+	   'name' => 'required',
+     'email' => 'required',
+     'role' => 'required',
+     'password' => 'required',
+    ]);
+ 
+    $user = User::find($id);
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->role = $request->role;
+    $user->password = Hash::make($request->password);
+    
+    $user->save();
+    return redirect('/user');
+}
 }

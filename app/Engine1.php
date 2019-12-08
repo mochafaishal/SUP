@@ -8,7 +8,7 @@ class Engine1 extends Model
 {
     protected $table = "engine1";
     
-    protected $fillable = ['engine1_id','aircraft_id','engine_name','serial_no','no_registration','created_at','updated_at'];
+    protected $fillable = ['engine1_id','aircraft_id','engine_name','serial_no','no_registration'];
     
     public function aircraft()
     {

@@ -22,8 +22,6 @@
                 <th>Aircraft Name</th>
                 <th>Serial No</th>
                 <th>Registration no</th>
-               
-                <th>amount due</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -36,12 +34,11 @@
                 <td>{{$mr->aircraft->asset_name}}</td>
                 <td>{{$mr->aircraft->serial_no}}</td>
                 <td>{{$mr->aircraft->no_registration}}</td>
-                <td></td>
                 <td>
                     <div class="table-data-feature">
-                    <a href="/edit-maintenance-reserve" class="btn btn-info mr-1">Edit</a> <br>
+                    <a href="/edit-maintenance-reserve/{{ $mr->id }}" class="btn btn-info mr-1">Edit</a> <br>
                     <a href="/detail-maintenance-reserve/{{ $mr->id }}" class="btn btn-success mr-1">Detail</a>
-                    <a href="/maintenance-reserve/delete/" class="btn btn-danger">Hapus</a>
+                    <a href="/maintenance-reserve/delete/{{ $mr->id }}" class="btn btn-danger">Hapus</a>
                     </div>
                 </td>
             </tr>

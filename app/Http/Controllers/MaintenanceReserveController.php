@@ -28,17 +28,22 @@ class MaintenanceReserveController extends Controller
       return view('maintenance-reserve.maintenance-reserve', ['maintenancereserve' => $maintenancereserve]);
   }
 
+  public function delete($id)
+  {
+      $maintenancereserve = Maintenancereserve::find($id);
+      $maintenancereserve->delete();
+      return redirect('/maintenance-reserve');
+  }
+
   public function create()
   {
       $aircraft = Aircraft::all();
       return view('maintenance-reserve.add-maintenance-reserve', ['aircraft' => $aircraft]);
 
   }
-  public function edit()
-  {
-      return view('maintenance-reserve.edit-maintenance-reserve');
-  }
-  public function detail($id)
+
+  
+      public function detail($id)
   {
       $maintenancereserve = Maintenancereserve::find($id);
       $airframe = airframe::where('aircraft_id',$maintenancereserve->aircraft_id)->first();
@@ -397,6 +402,68 @@ class MaintenanceReserveController extends Controller
   
         return redirect('maintenance-reserve');
     }
+
+
+    // edit maintenance reserve
+
+    public function edit($id)
+    {   
+        $maintenancereserve = Maintenancereserve::find($id);
+        return view('maintenance-reserve.edit-maintenance-reserve', ['maintenancereserve' => $maintenancereserve]);
+  
+    }
+  
+    public function update($id, Request $request)
+       {
+        $this->validate($request,[
+          'aircraft_id' => 'required',
+          'date' => 'required'
+         
+        ]);
+     
+        $maintenancereserve = Maintenancereserve::find($id);
+        $maintenancereserve->aircraft_id = $request->aircraft_id;
+        $maintenancereserve->date = $request->date;
+     
+        
+        $maintenancereserve->save();
+        return redirect()->route('edit-maintenance-reserve-engine1', ['id_maintenancereseve' => $maintenancereserve->id]);  
+   
+      }
+
+    public function editeengine1($id)
+    {   
+      $maintenancereserve = Maintenancereserve::find($id);
+      $i = Total::where('maintenancereserve_id',$maintenancereserve->id)->where('id',$maintenancereserve->total->id)->first();
+      return view('maintenance-reserve.edit-maintenance-reserve-engine1', ['maintenancereserve' => $maintenancereserve, 'total' => $i]);
+    }
+
+    public function updateengine1($id, Request $request)
+    {
+     $this->validate($request,[
+       'fh' => 'required',
+       'fc' => 'required'
+      
+     ]);
+  
+     $total = Total::find($id);
+     $total->fh = $request->fh;
+     $total->fc = $request->fc;
+
+     if($total==null){
+      $total->tsn=0+$request->fh;
+      $total->csn=0+$request->fc;
+    }else{
+      $total->tsn=0+$request->fh;
+      $total->csn=0+$request->fc;
+    }
+     
+     $total->save();
+     
+     return redirect('maintenance-reserve');
+     
+   }
+
 
     // export excel
     public function export()

@@ -9,7 +9,7 @@ class Aircraft extends Model
     protected $table = "aircraft";
     
     protected $fillable = ['asset_name','equipment_type','serial_no',
-                            'no_registration','lease_status','lessor','start_date','end_date','updated_at','created_at'];
+                            'no_registration','lease_status','lessor','start_date','end_date'];
     
     public function maintenancereserves(){
         return $this->hasMany('App\Maintenancereserve');

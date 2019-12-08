@@ -8,7 +8,7 @@
                     <strong>Add Maintenance</strong>
                 </div>
                 <div class="card-body card-block">
-
+{{dd($maintenance)}}
                 <form method="post" action="/maintenance/store">
  
                 {{ csrf_field() }}

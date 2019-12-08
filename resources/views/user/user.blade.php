@@ -25,8 +25,9 @@
         </thead>
         <tbody>
             <tr>
+            @php $no = 1; @endphp
             @foreach($user as $user)
-                <td>{{$user->id}}</td>
+                <td>{{ $no++ }}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role}}</td>
@@ -34,8 +35,7 @@
                 <td>{{$user->updated_at}}</td>
                 <td>
                     <div class="table-data-feature">
-                    <a href="/edit-user" class="btn btn-info mr-1">Edit</a> <br>
-                    <a href="/user/delete/" class="btn btn-success mr-1">Detail</a>
+                    <a href="/edit-user/{{ $user->id }}" class="btn btn-info mr-1">Edit</a> <br>
                     <a href="/user/delete/{{ $user->id }}" class="btn btn-danger">Hapus</a>
                     </div>
                 </td>

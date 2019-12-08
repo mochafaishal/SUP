@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Engine;
+use App\Engine1;
 use Illuminate\Http\Request;
 
 class AngineController extends Controller
 {
   public function index()
   {
-      return view('angine.angine');
+      $engine1 = Engine1::all();
+      return view('angine.engine', ['engine1' => $engine1]);
+
   }
 
   public function create()
@@ -25,7 +27,7 @@ class AngineController extends Controller
         'no_registration' => 'required',
       ]);
 
-      Engine::create([
+      Engine1::create([
 
          'engine_name' => $request->engine_name,
          'serial_no' => $request->serial_no,
@@ -35,11 +37,35 @@ class AngineController extends Controller
         
       ]);
 
-      return back();
+      return redirect('/engine');
   }
 
-  public function edit()
+  public function edit($id)
   {
-      return view('angine.edit-angine');
+      $engine1 = Engine1::find($id);
+      return view('angine.edit-angine', ['engine1' => $engine1]);
+  }
+
+  public function delete($id)
+  {
+      $engine1 = Engine1::find($id);
+      $engine1->delete();
+      return redirect('/engine');
+  }
+  public function update($id, Request $request)
+  {
+      $this->validate($request,[
+        'engine_name' => 'required',
+        'serial_no' => 'required',
+        'no_registration' => 'required',
+      ]);
+   
+      $engine1 = Engine1::find($id);
+      $engine1->engine_name = $request->engine_name;
+      $engine1->serial_no = $request->serial_no;
+      $engine1->no_registration = $request->no_registration;
+      
+      $engine1->save();
+      return redirect('/engine');
   }
 }

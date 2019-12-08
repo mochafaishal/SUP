@@ -34,4 +34,8 @@ class Total extends Model
     {
     	return $this->belongsTo('App\Engine');
     }
+    public function maintenancereserve()
+    {
+    	return $this->belongsTo('App\Total');
+    }
 }

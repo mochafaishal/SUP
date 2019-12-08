@@ -44,7 +44,7 @@
                 <td>{{$a->end_date}}</td> -->
                 <td>
                     <div class="table-data-feature">
-                    <a href="/edit-aircraft" class="btn btn-info mr-1">Edit</a> <br>
+                    <a href="/edit-aircraft/{{ $a->id }}" class="btn btn-info mr-1">Edit</a> <br>
                     <a href="/detail-aircraft/{{ $a->id }}" class="btn btn-success mr-1">Detail</a>
                     <a href="/aircraft-list/delete/{{ $a->id }}" class="btn btn-danger">Hapus</a>
                     </div>

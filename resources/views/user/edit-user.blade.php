@@ -12,25 +12,30 @@
                 <div class="card-header">{{ __('Edit User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                    <form method="POST" action="/user/update/{{ $user->id }}">
+                    {{ csrf_field() }}
+                        {{ method_field('PUT') }}
 
                         <div class="form-group row">
                             <label for="name" class="col-md-12 col-form-label">{{ __('Name') }}</label>
 
                             <div class="col-md-12">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> @error('name')
+                                <input value="{{ $user->name }}"  id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus> @error('name') 
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span> @enderror
                             </div>
+                            <!-- <label for="name" class="col-md-12 col-form-label">Name</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                            </div> -->
                         </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-12 col-form-label">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-12">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"> @error('email')
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email"> @error('email')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span> @enderror
@@ -40,9 +45,9 @@
                         <div class="form-group row col-md-12">
                             <label for="vat" class=" form-control-label">Role</label>
                             <select name="role" id="role" type="text" class="form-control">
-                                <option value="0">manager</option>
-                                <option value="1">admin</option>
-                                <option value="2">user</option>
+                                <option value="manager">manager</option>
+                                <option value="admin">admin</option>
+                                <option value="user">user</option>
                             </select>
                             
                         </div>
@@ -51,7 +56,7 @@
                             <label for="password" class="col-md-12 col-form-label">{{ __('Password') }}</label>
 
                             <div class="col-md-12">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"> @error('password')
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ $user->email }}" required autocomplete="new-password"> @error('password')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span> @enderror

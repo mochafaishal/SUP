@@ -7,12 +7,11 @@
                 <div class="card-header">{{ __('Add User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="/user/store">
                         @csrf
 
                         <div class="form-group row">
                             <label for="name" class="col-md-12 col-form-label">{{ __('Name') }}</label>
-
                             <div class="col-md-12">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -35,9 +34,9 @@
                         <div class="form-group row col-md-12">
                             <label for="vat" class=" form-control-label">Role</label>
                             <select name="role" id="role" type="text" class="form-control">
-                                <option value="0">manager</option>
-                                <option value="1">admin</option>
-                                <option value="2">user</option>
+                                <option value="manager">manager</option>
+                                <option value="admin">admin</option>
+                                <option value="user">user</option>
                             </select>
                             
                         </div>

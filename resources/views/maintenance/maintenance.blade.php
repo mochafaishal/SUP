@@ -12,8 +12,12 @@
 
 <div class="col-md-12">
     <table id="example" class="table table-borderless table-data3" style="width:100%">
+    @if (Auth::check() && Auth::user()->role == 'manager')
         <button type="button" class="btn btn-primary btn-lg mb-3" onclick="window.location='{{ URL::route('add-maintenance') }}'">Add Maintenance</button>
-
+    @endif
+    @if (Auth::check() && Auth::user()->role == 'admin')
+        <button type="button" class="btn btn-primary btn-lg mb-3" onclick="window.location='{{ URL::route('add-maintenance') }}'">Add Maintenance</button>
+    @endif
         <thead>
             <tr>
                 <th>no</th>
@@ -23,7 +27,12 @@
                 <th>paymen type</th>
                 <th>reserve rate</th>
                 <th>estimed cost</th>
+                @if (Auth::check() && Auth::user()->role == 'manager')
                 <th>action</th>
+                @endif
+                @if (Auth::check() && Auth::user()->role == 'admin')
+                <th>action</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -36,12 +45,24 @@
                 <td>{{$m->payment_type}}</td>
                 <td>{{$m->reserve_rate}}</td>
                 <td>$ {{ number_format($m->estimed_cost, 2, ',', '.') }}</td>
+
+                @if (Auth::check() && Auth::user()->role == 'manager')
                 <td>
                     <div class="table-data-feature">
                         <a href="/edit-maintenance/{{ $m->id }}" class="btn btn-info mr-1">Edit</a> <br>
                         <a href="/maintenance/delete/{{ $m->id }}" class="btn btn-danger">Hapus</a>
                     </div>
                 </td>
+                @endif
+
+                @if (Auth::check() && Auth::user()->role == 'admin')
+                <td>
+                    <div class="table-data-feature">
+                        <a href="/edit-maintenance/{{ $m->id }}" class="btn btn-info mr-1">Edit</a> <br>
+                        <a href="/maintenance/delete/{{ $m->id }}" class="btn btn-danger">Hapus</a>
+                    </div>
+                </td>
+                @endif
             </tr>
     @endforeach   
         </tbody>
