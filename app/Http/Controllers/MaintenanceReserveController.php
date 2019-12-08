@@ -445,7 +445,7 @@ class MaintenanceReserveController extends Controller
        'fc' => 'required'
       
      ]);
-  
+     
      $total = Total::find($id);
      $total->fh = $request->fh;
      $total->fc = $request->fc;
@@ -460,9 +460,46 @@ class MaintenanceReserveController extends Controller
      
      $total->save();
      
-     return redirect('maintenance-reserve');
+     return redirect()->route('edit-maintenance-reserve-engine2', ['id_maintenancereseve' => $total->maintenancereserve_id]);  
      
    }
+
+   public function editeengine2($id)
+   {   
+
+     $maintenancereserve = Maintenancereserve::find($id);
+    //  $total = Total::where('maintenancereserve_id',$maintenancereserve->total->maintenancereserve_id)->where('engine2_id',$maintenancereserve->total->engine2_id)->orderBy('id', 'desc')->first();
+    $i = Total::find($id);
+    $total = Total::where('engine2_id',$maintenancereserve->total->engine2_id)->orderBy('id')->first();
+     
+     return view('maintenance-reserve.edit-maintenance-reserve-engine2', ['maintenancereserve' => $maintenancereserve, 'total' => $total, 'i' => $i]);
+   }
+
+   public function updateengine2($id, Request $request)
+   {
+    $this->validate($request,[
+      'fh' => 'required',
+      'fc' => 'required'
+     
+    ]);
+ 
+    $total = Total::find($id);
+    $total->fh = $request->fh;
+    $total->fc = $request->fc;
+
+    if($total==null){
+     $total->tsn=0+$request->fh;
+     $total->csn=0+$request->fc;
+   }else{
+     $total->tsn=0+$request->fh;
+     $total->csn=0+$request->fc;
+   }
+    
+    $total->save();
+    
+    return redirect('maintenance-reserve');
+    
+  }
 
 
     // export excel

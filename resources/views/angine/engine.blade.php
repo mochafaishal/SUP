@@ -12,7 +12,13 @@
 <div class="table-responsive table--no-card m-b-30">
     <div class="col-md-12">
         <table id="example" class="table table-borderless table-data3" style="width:100%">
+        @if (Auth::check() && Auth::user()->role == 'manager')
             <button type="button" class="btn btn-primary btn-lg mb-3" onclick="window.location='{{ URL::route('add-engine') }}'">Add Angine</button>
+        @endif
+
+        @if (Auth::check() && Auth::user()->role == 'admin')
+            <button type="button" class="btn btn-primary btn-lg mb-3" onclick="window.location='{{ URL::route('add-engine') }}'">Add Angine</button>
+        @endif
 
             <thead>
                 <tr>
@@ -22,7 +28,12 @@
                     <th>no serial</th>
                     <th>created at</th>
                     <th>updated at</th>
+                    @if (Auth::check() && Auth::user()->role == 'manager')
                     <th>action</th>
+                    @endif
+                    @if (Auth::check() && Auth::user()->role == 'admin')
+                    <th>action</th>
+                    @endif
                 </tr>
             </thead>
         <tbody>
@@ -35,12 +46,22 @@
                     <td>{{$engine1 -> serial_no}}</td>
                     <td>{{$engine1 -> created_at}}</td>
                     <td>{{$engine1 -> updated_at}}</td>
+                    @if (Auth::check() && Auth::user()->role == 'manager')
                     <td>
                     <div class="table-data-feature">
                         <a href="/edit-engine/{{ $engine1->id }}" class="btn btn-info mr-1">Edit</a> <br>
                         <a href="/engine/delete/{{ $engine1->id }}" class="btn btn-danger">Hapus</a>
                     </div>
                     </td>
+                    @endif
+                    @if (Auth::check() && Auth::user()->role == 'admin')
+                    <td>
+                    <div class="table-data-feature">
+                        <a href="/edit-engine/{{ $engine1->id }}" class="btn btn-info mr-1">Edit</a> <br>
+                        <a href="/engine/delete/{{ $engine1->id }}" class="btn btn-danger">Hapus</a>
+                    </div>
+                    </td>
+                    @endif
                 </tr>
                 @endforeach 
 

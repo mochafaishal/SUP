@@ -26,7 +26,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="vat" class=" form-control-label">Engine Name</label>
-                                                        <select name="engine_id" id="select" class="form-control" value="{{ $maintenancereserve->aircraft->engine1->id }}"> 
+                                                        <select name="engine1_id" id="select" class="form-control" value="{{ $maintenancereserve->aircraft->engine1->id }}"> 
                                                         <option @if($maintenancereserve->aircraft->id ) {{ "selected"}} @endif value="{{$total->engine1_id}}">{{ $maintenancereserve->aircraft->engine1->engine_name }} </option>
 
                                                         </select>

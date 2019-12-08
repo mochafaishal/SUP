@@ -28,11 +28,11 @@ class Total extends Model
     }
     public function engine1()
     {
-    	return $this->belongsTo('App\Engine');
+    	return $this->belongsTo('App\Engine1');
     }
     public function engine2()
     {
-    	return $this->belongsTo('App\Engine');
+    	return $this->belongsTo('App\Engine2');
     }
     public function maintenancereserve()
     {

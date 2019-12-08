@@ -13,7 +13,13 @@
 
 <div class="col-md-12 table-responsive">
     <table id="example" class="table table-borderless table-data3" style="width:100%">
+    @if (Auth::check() && Auth::user()->role == 'manager')
     <a href="/add-maintenance-reserve" class="btn btn-info mb-3">add maintenance reserve</a>
+    @endif
+
+    @if (Auth::check() && Auth::user()->role == 'admin')
+    <a href="/add-maintenance-reserve" class="btn btn-info mb-3">add maintenance reserve</a>
+    @endif
     
         <thead>
             <tr>
@@ -36,9 +42,19 @@
                 <td>{{$mr->aircraft->no_registration}}</td>
                 <td>
                     <div class="table-data-feature">
+                    @if (Auth::check() && Auth::user()->role == 'admin')
                     <a href="/edit-maintenance-reserve/{{ $mr->id }}" class="btn btn-info mr-1">Edit</a> <br>
+                    @endif
+                    @if (Auth::check() && Auth::user()->role == 'manager')
+                    <a href="/edit-maintenance-reserve/{{ $mr->id }}" class="btn btn-info mr-1">Edit</a> <br>
+                    @endif
                     <a href="/detail-maintenance-reserve/{{ $mr->id }}" class="btn btn-success mr-1">Detail</a>
+                    @if (Auth::check() && Auth::user()->role == 'admin')
                     <a href="/maintenance-reserve/delete/{{ $mr->id }}" class="btn btn-danger">Hapus</a>
+                    @endif
+                    @if (Auth::check() && Auth::user()->role == 'manager')
+                    <a href="/maintenance-reserve/delete/{{ $mr->id }}" class="btn btn-danger">Hapus</a>
+                    @endif
                     </div>
                 </td>
             </tr>

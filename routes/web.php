@@ -139,6 +139,9 @@ Route::put('/maintenance/update/{id}', 'MaintenanceReserveController@update');
 Route::get('/edit-maintenance-reserve-engine1/{maintenancereserve_id}', 'MaintenanceReserveController@editeengine1')->name('edit-maintenance-reserve-engine1');
 Route::put('/maintenance-reserve-engine1/update/{id}', 'MaintenanceReserveController@updateengine1');
 
+Route::get('/edit-maintenance-reserve-engine2/{maintenancereserve_id}', 'MaintenanceReserveController@editeengine2')->name('edit-maintenance-reserve-engine2');
+Route::put('/maintenance-reserve-engine2/update/{id}', 'MaintenanceReserveController@updateengine2');
+
 
 // export excel
 Route::get('/maintenance-reserve-report/export_excel', 'MaintenanceReserveController@export_excel');
