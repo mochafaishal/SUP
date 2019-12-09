@@ -142,6 +142,14 @@ Route::put('/maintenance-reserve-engine1/update/{id}', 'MaintenanceReserveContro
 Route::get('/edit-maintenance-reserve-engine2/{maintenancereserve_id}', 'MaintenanceReserveController@editeengine2')->name('edit-maintenance-reserve-engine2');
 Route::put('/maintenance-reserve-engine2/update/{id}', 'MaintenanceReserveController@updateengine2');
 
+Route::get('/edit-maintenance-reserve-airframe/{maintenancereserve_id}', 'MaintenanceReserveController@editeairframe')->name('edit-maintenance-reserve-airframe');
+Route::put('/maintenance-reserve-airframe/update/{id}', 'MaintenanceReserveController@updateeairframe');
+
+Route::get('/edit-maintenance-reserve-apu/{maintenancereserve_id}', 'MaintenanceReserveController@editeapu')->name('edit-maintenance-reserve-apu');
+Route::put('/maintenance-reserve-apu/update/{id}', 'MaintenanceReserveController@updateeapu');
+
+Route::get('/edit-maintenance-reserve-landing/{maintenancereserve_id}', 'MaintenanceReserveController@editelanding')->name('edit-maintenance-reserve-landing');
+Route::put('/maintenance-reserve-landing/update/{id}', 'MaintenanceReserveController@updateelanding');
 
 // export excel
 Route::get('/maintenance-reserve-report/export_excel', 'MaintenanceReserveController@export_excel');

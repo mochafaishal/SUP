@@ -1,6 +1,6 @@
 
 @extends('layouts.master') @section('title','ADD Maintenance Reserve Engine2') @section('content')
-{{ dd($maintenancereserve) }}
+
 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -26,7 +26,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="vat" class=" form-control-label">Engine Name</label>
-                                                        <select name="engine1_id" id="select" class="form-control" value="{{ $maintenancereserve->aircraft->engine1->id }}"> 
+                                                        <select name="engine2_id" id="select" class="form-control" value="{{ $maintenancereserve->aircraft->engine2->id }}"> 
                                                         <option @if($maintenancereserve->aircraft->id ) {{ "selected"}} @endif value="{{$total->engine2_id}}">{{ $maintenancereserve->aircraft->engine2->engine_name }} </option>
 
                                                         </select>
@@ -38,11 +38,11 @@
                                                            
                                                     <div class="form-group">
                                                         <label for="company" class=" form-control-label">FH</label>
-                                                        <input type="text" id="company" name="fh" placeholder="Enter Engine 1 Flight Hour" class="form-control" value="{{ $total->fh }}">
+                                                        <input type="text" id="company" name="fh" placeholder="Enter Engine 2 Flight Hour" class="form-control" value="{{ $total->fh }}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="vat" class=" form-control-label">FC</label>
-                                                        <input type="text" id="vat" name="fc" placeholder="Enter Engine 1 Flight Time Since New" class="form-control" value="{{ $total->fc }}">
+                                                        <input type="text" id="vat" name="fc" placeholder="Enter Engine 2 Flight Time Since New" class="form-control" value="{{ $total->fc }}">
                                                     </div>
                                                 </div>
 

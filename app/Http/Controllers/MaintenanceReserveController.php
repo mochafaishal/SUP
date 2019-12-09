@@ -395,7 +395,7 @@ class MaintenanceReserveController extends Controller
           'billed_rate' =>150,
           'amount_due' => $amount_due,
           'billed_rate_fc' =>300,
-            'amount_due_fc' => $amount_due_fc
+          'amount_due_fc' => $amount_due_fc
 
           
         ]);
@@ -447,18 +447,35 @@ class MaintenanceReserveController extends Controller
      ]);
      
      $total = Total::find($id);
-     $total->fh = $request->fh;
-     $total->fc = $request->fc;
 
-     if($total==null){
-      $total->tsn=0+$request->fh;
-      $total->csn=0+$request->fc;
-    }else{
-      $total->tsn=0+$request->fh;
-      $total->csn=0+$request->fc;
-    }
-     
-     $total->save();
+     $totals = Total::where('aircraft_id',$total->aircraft_id)->where('engine1_id',$total->engine1_id)->where('id','>=',$id)->get();
+
+      foreach($totals as $t){
+        if($request->fh > $t->fh){
+          $fhnew = $request->fh - $t->fh;
+          $t->tsn=$t->tsn + $fhnew;
+         }else if($request->fh < $t->fh){
+          $fhnew = $t->fh - $request->fh;
+          $t->tsn=$t->tsn - $fhnew;
+         }
+
+         if($request->fc > $t->fc){
+          $fcnew = $request->fc - $t->fc;
+          $t->csn=$t->csn + $fcnew;
+         }else if($request->fc < $t->fc){
+          $fcnew = $t->fc - $request->fc;
+          $t->csn=$t->csn - $fcnew;
+         }
+
+         if($t->id == $id){
+          $t->fh=$request->fh;
+          $t->fc=$request->fc;
+         }
+    
+         $t->save();
+      }
+
+
      
      return redirect()->route('edit-maintenance-reserve-engine2', ['id_maintenancereseve' => $total->maintenancereserve_id]);  
      
@@ -469,10 +486,10 @@ class MaintenanceReserveController extends Controller
 
      $maintenancereserve = Maintenancereserve::find($id);
     //  $total = Total::where('maintenancereserve_id',$maintenancereserve->total->maintenancereserve_id)->where('engine2_id',$maintenancereserve->total->engine2_id)->orderBy('id', 'desc')->first();
-    $i = Total::find($id);
-    $total = Total::where('engine2_id',$maintenancereserve->total->engine2_id)->orderBy('id')->first();
-     
-     return view('maintenance-reserve.edit-maintenance-reserve-engine2', ['maintenancereserve' => $maintenancereserve, 'total' => $total, 'i' => $i]);
+    
+    $total = Total::where('engine2_id',$maintenancereserve->aircraft->engine2->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+
+     return view('maintenance-reserve.edit-maintenance-reserve-engine2', ['maintenancereserve' => $maintenancereserve, 'total' => $total]);
    }
 
    public function updateengine2($id, Request $request)
@@ -482,23 +499,202 @@ class MaintenanceReserveController extends Controller
       'fc' => 'required'
      
     ]);
- 
+    
     $total = Total::find($id);
-    $total->fh = $request->fh;
-    $total->fc = $request->fc;
 
-    if($total==null){
-     $total->tsn=0+$request->fh;
-     $total->csn=0+$request->fc;
-   }else{
-     $total->tsn=0+$request->fh;
-     $total->csn=0+$request->fc;
-   }
+    $totals = Total::where('aircraft_id',$total->aircraft_id)->where('engine2_id',$total->engine2_id)->where('id','>=',$id)->get();
+
+     foreach($totals as $t){
+       if($request->fh > $t->fh){
+         $fhnew = $request->fh - $t->fh;
+         $t->tsn=$t->tsn + $fhnew;
+        }else if($request->fh < $t->fh){
+         $fhnew = $t->fh - $request->fh;
+         $t->tsn=$t->tsn - $fhnew;
+        }
+
+        if($request->fc > $t->fc){
+         $fcnew = $request->fc - $t->fc;
+         $t->csn=$t->csn + $fcnew;
+        }else if($request->fc < $t->fc){
+         $fcnew = $t->fc - $request->fc;
+         $t->csn=$t->csn - $fcnew;
+        }
+
+        if($t->id == $id){
+         $t->fh=$request->fh;
+         $t->fc=$request->fc;
+        }
+   
+        $t->save();
+     }
+
+
     
-    $total->save();
+    return redirect()->route('edit-maintenance-reserve-airframe', ['id_maintenancereseve' => $total->maintenancereserve_id]);  
+
     
-    return redirect('maintenance-reserve');
+  }
+
+  public function editeairframe($id)
+  {   
+
+    $maintenancereserve = Maintenancereserve::find($id);
+   //  $total = Total::where('maintenancereserve_id',$maintenancereserve->total->maintenancereserve_id)->where('engine2_id',$maintenancereserve->total->engine2_id)->orderBy('id', 'desc')->first();
+   
+   $total = Total::where('airframe_id',$maintenancereserve->aircraft->airframe->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+
+    return view('maintenance-reserve.edit-maintenance-reserve-airframe', ['maintenancereserve' => $maintenancereserve, 'total' => $total]);
+  }
+
+  public function updateeairframe($id, Request $request)
+  {
+   $this->validate($request,[
+     'fh' => 'required',
+     'fc' => 'required'
     
+   ]);
+   
+   $total = Total::find($id);
+
+   $totals = Total::where('aircraft_id',$total->aircraft_id)->where('airframe_id',$total->airframe_id)->where('id','>=',$id)->get();
+
+    foreach($totals as $t){
+      if($request->fh > $t->fh){
+        $fhnew = $request->fh - $t->fh;
+        $t->tsn=$t->tsn + $fhnew;
+       }else if($request->fh < $t->fh){
+        $fhnew = $t->fh - $request->fh;
+        $t->tsn=$t->tsn - $fhnew;
+       }
+
+       if($request->fc > $t->fc){
+        $fcnew = $request->fc - $t->fc;
+        $t->csn=$t->csn + $fcnew;
+       }else if($request->fc < $t->fc){
+        $fcnew = $t->fc - $request->fc;
+        $t->csn=$t->csn - $fcnew;
+       }
+
+       if($t->id == $id){
+        $t->fh=$request->fh;
+        $t->fc=$request->fc;
+       }
+  
+       $t->save();
+    }
+
+
+   
+   return redirect()->route('edit-maintenance-reserve-apu', ['id_maintenancereseve' => $total->maintenancereserve_id]);  
+  
+  
+  }
+
+  public function editeapu($id)
+  {   
+
+    $maintenancereserve = Maintenancereserve::find($id);
+   //  $total = Total::where('maintenancereserve_id',$maintenancereserve->total->maintenancereserve_id)->where('engine2_id',$maintenancereserve->total->engine2_id)->orderBy('id', 'desc')->first();
+   
+   $total = Total::where('apu_id',$maintenancereserve->aircraft->apu->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+
+    return view('maintenance-reserve.edit-maintenance-reserve-apu', ['maintenancereserve' => $maintenancereserve, 'total' => $total]);
+  }
+
+  public function updateeapu($id, Request $request)
+  {
+   $this->validate($request,[
+     'fh' => 'required',
+     'fc' => 'required'
+    
+   ]);
+   
+   $total = Total::find($id);
+
+   $totals = Total::where('aircraft_id',$total->aircraft_id)->where('apu_id',$total->apu_id)->where('id','>=',$id)->get();
+
+    foreach($totals as $t){
+      if($request->fh > $t->fh){
+        $fhnew = $request->fh - $t->fh;
+        $t->tsn=$t->tsn + $fhnew;
+       }else if($request->fh < $t->fh){
+        $fhnew = $t->fh - $request->fh;
+        $t->tsn=$t->tsn - $fhnew;
+       }
+
+       if($request->fc > $t->fc){
+        $fcnew = $request->fc - $t->fc;
+        $t->csn=$t->csn + $fcnew;
+       }else if($request->fc < $t->fc){
+        $fcnew = $t->fc - $request->fc;
+        $t->csn=$t->csn - $fcnew;
+       }
+
+       if($t->id == $id){
+        $t->fh=$request->fh;
+        $t->fc=$request->fc;
+       }
+  
+       $t->save();
+    }
+
+
+   
+   return redirect()->route('edit-maintenance-reserve-landing', ['id_maintenancereseve' => $total->maintenancereserve_id]);  
+  }
+
+  public function editelanding($id)
+  {   
+
+    $maintenancereserve = Maintenancereserve::find($id);
+   //  $total = Total::where('maintenancereserve_id',$maintenancereserve->total->maintenancereserve_id)->where('engine2_id',$maintenancereserve->total->engine2_id)->orderBy('id', 'desc')->first();
+   
+   $total = Total::where('landing_id',$maintenancereserve->aircraft->landing->id)->where('maintenancereserve_id',$maintenancereserve->id)->first();
+
+    return view('maintenance-reserve.edit-maintenance-reserve-landing', ['maintenancereserve' => $maintenancereserve, 'total' => $total]);
+  }
+
+  public function updateelanding($id, Request $request)
+  {
+   $this->validate($request,[
+     'fh' => 'required',
+     'fc' => 'required'
+    
+   ]);
+   
+   $total = Total::find($id);
+
+   $totals = Total::where('aircraft_id',$total->aircraft_id)->where('landing_id',$total->landing_id)->where('id','>=',$id)->get();
+
+    foreach($totals as $t){
+      if($request->fh > $t->fh){
+        $fhnew = $request->fh - $t->fh;
+        $t->tsn=$t->tsn + $fhnew;
+       }else if($request->fh < $t->fh){
+        $fhnew = $t->fh - $request->fh;
+        $t->tsn=$t->tsn - $fhnew;
+       }
+
+       if($request->fc > $t->fc){
+        $fcnew = $request->fc - $t->fc;
+        $t->csn=$t->csn + $fcnew;
+       }else if($request->fc < $t->fc){
+        $fcnew = $t->fc - $request->fc;
+        $t->csn=$t->csn - $fcnew;
+       }
+
+       if($t->id == $id){
+        $t->fh=$request->fh;
+        $t->fc=$request->fc;
+       }
+  
+       $t->save();
+    }
+
+
+   
+   return redirect('maintenance-reserve');  
   }
 
 

@@ -9,14 +9,15 @@
                                                     <strong>Add Airframe</strong>
                                                 </div>
                                                 <div class="card-body card-block">
-                                                <form action="/add-maintenance-reserve-airframe/storeairframe" method="post">    
-                                                {{ csrf_field() }}                
+                                                <form action="/maintenance-reserve-airframe/update/{{ $total->id }}" method="post">    
+                                                {{ csrf_field() }}
+                                                {{ method_field('PUT') }}                 
                                                     <div class="form-group">
                                                         <label for="vat" class=" form-control-label">Aircraft</label>
                                                         <select name="aircraft_id" id="select" class="form-control">
-                                                        @foreach($aircraft as $aircraft)
-                                                        <option @if($aircraft_id==$aircraft->id ) {{ "selected"}} @endif value="{{$aircraft->id}}">{{$aircraft->id}} - {{$aircraft->asset_name}} </option>
-                                                        @endforeach
+                                                        
+                                                        <option @if($maintenancereserve->aircraft->id ) {{ "selected"}} @endif value="{{$total->aircraft_id}}">{{ $maintenancereserve->aircraft->asset_name }} </option>
+                                                        
                                                         </select>
                                                         @if($errors->has('aircraft_id'))
                                                         <div class="text-danger">
@@ -25,11 +26,11 @@
                                                         @endif
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="vat" class=" form-control-label">Airframe</label>
+                                                        <label for="vat" class=" form-control-label">Airframe Serial No</label>
                                                         <select name="airframe_id" id="select" class="form-control">
-                                                        @foreach($airframe as $airframe)
-                                                            <option value="{{ $airframe->id }}">{{ $airframe->id }} - {{ $airframe->serial_no }} - {{ $airframe->no_registration }} - {{$airframe->aircraft->asset_name}}</option>
-                                                            @endforeach 
+                                                        
+                                                        <option @if($maintenancereserve->aircraft->airframe->id ) {{ "selected"}} @endif value="{{$total->airframe_id}}">{{ $total->airframe->serial_no }} - {{ $total->airframe->no_registration }} </option>
+                                                        
                                                         </select>
                                                         @if($errors->has('aircraft_id'))
                                                         <div class="text-danger">
@@ -37,14 +38,14 @@
                                                         </div>
                                                         @endif
                                                     </div>
-
+                                                   
                                                     <div class="form-group">
                                                         <label for="company" class=" form-control-label">FH</label>
-                                                        <input type="text" id="company" name="fh" placeholder="Enter Engine 1 Flight Hour" class="form-control">
+                                                        <input type="text" id="company" name="fh" placeholder="Enter Engine 1 Flight Hour" class="form-control" value="{{ $total->fh }}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="vat" class=" form-control-label">FC</label>
-                                                        <input type="text" id="vat" name="fc" placeholder="Enter Engine 1 Flight Time Since New" class="form-control">
+                                                        <input type="text" id="vat" name="fc" placeholder="Enter Engine 1 Flight Time Since New" class="form-control" value="{{ $total->fc }}">
                                                     </div>
                                                 </div>
 
