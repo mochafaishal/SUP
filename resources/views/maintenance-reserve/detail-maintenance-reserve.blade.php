@@ -1,6 +1,6 @@
 @extends('layouts.master') @section('title','Detail Maintenance Reserve') @section('content')
 
-<div class="col-md-12 table-responsive">
+<div class="col-md-12">
     <h1>Detail maintenance reserve {{$maintenancereserve->aircraft->asset_name}} - {{$maintenancereserve->aircraft->serial_no}} - {{$maintenancereserve->aircraft->no_registration}} </h1>
 
     <tr>

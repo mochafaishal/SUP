@@ -9,7 +9,7 @@
 
 </html>
 
-<div class="col-md-12 table-responsive">
+<div class="col-md-12">
     <table id="example" class="table table-borderless table-data3" style="width:100%">
     @if (Auth::check() && Auth::user()->role == 'manager')
     <a href="/add-aircraft" class="btn btn-info mb-3">Add aircraft</a>

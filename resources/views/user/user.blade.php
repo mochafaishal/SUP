@@ -8,7 +8,7 @@
 
 </html>
 
-<div class="col-md-12 table-responsive">
+<div class="col-md-12">
     <table id="example" class="table table-borderless table-data3" style="width:100%">
         <button type="button" class="btn btn-primary btn-lg mb-3" onclick="window.location='{{ URL::route('add-user') }}'">Add User</button>
 
