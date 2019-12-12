@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Auth.login');
 });
 
 Auth::routes();
@@ -26,7 +26,7 @@ Route::get('/edit-user/{id}', 'UserController@edit')->name('edit-user');
 Route::put('/user/update/{id}', 'UserController@update');
 Route::get('/user/delete/{id}', 'UserController@delete');
 Route::get('setting-user', 'SettingUserController@index')->name('setting-user');
-Route::get('profile', 'ProfileController@index')->name('profile');
+Route::get('profile/{id}', 'UserController@profile')->name('profile');
 // ======================================================================================
 
 

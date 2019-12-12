@@ -23,7 +23,7 @@
                                                     <label for="input-normal" class=" form-control-label">Nama : </label>
                                                 </div>
                                                 <div class="col col-sm-6">
-                                                <label for="input-normal" class=" form-control-label">Jaksen Tiago</label>
+                                                <label for="input-normal" class=" form-control-label">{{ $user->name }}</label>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -31,7 +31,7 @@
                                                     <label for="input-normal" class=" form-control-label">Email : </label>
                                                 </div>
                                                 <div class="col col-sm-6">
-                                                <label for="input-normal" class=" form-control-label">Jaksentiago21@gmail.com</label>
+                                                <label for="input-normal" class=" form-control-label">{{ $user->email }}</label>
                                                 </div>
                                             </div>
                 
@@ -40,16 +40,7 @@
                                                     <label for="input-normal" class=" form-control-label">Role : </label>
                                                 </div>
                                                 <div class="col col-sm-6">
-                                                <label for="input-normal" class=" form-control-label">Manager</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group">
-                                                <div class="col col-sm-2">
-                                                    <label for="input-normal" class=" form-control-label">Employee Number : </label>
-                                                </div>
-                                                <div class="col col-sm-6">
-                                                <label for="input-normal" class=" form-control-label">15523210</label>
+                                                <label for="input-normal" class=" form-control-label">{{ $user->role }}</label>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -57,7 +48,7 @@
                                                     <label for="input-normal" class=" form-control-label">Created At : </label>
                                                 </div>
                                                 <div class="col col-sm-6">
-                                                <label for="input-normal" class=" form-control-label">2019-10-03</label>
+                                                <label for="input-normal" class=" form-control-label">{{ $user->created_at }}</label>
                                                 </div>
                                             </div>
                 
@@ -66,7 +57,7 @@
                                                     <label for="input-normal" class=" form-control-label">Updated At : </label>
                                                 </div>
                                                 <div class="col col-sm-6">
-                                                <label for="input-normal" class=" form-control-label">2019-10-03</label>
+                                                <label for="input-normal" class=" form-control-label">{{ $user->updated_at}}</label>
                                                 </div>
                                             </div>
                                             

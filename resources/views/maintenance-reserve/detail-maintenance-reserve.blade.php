@@ -13,7 +13,7 @@
     <table id="example" class="table table-borderless table-data3" style="width:100%">
         <br>
         <a href="/maintenance-reserve/cetak_pdf/{{$maintenancereserve->id}}" class="btn btn-danger mb-3 mt-3" target="_blank">CETAK PDF</a>
-        <a href="/maintenance-reserve-report/export_excel" class="btn btn-success  mb-3 mt-3 ml-3">CETAK EXCEL</a>
+        <!-- <a href="/maintenance-reserve-report/export_excel" class="btn btn-success  mb-3 mt-3 ml-3">CETAK EXCEL</a> -->
 
         <thead>
             <tr>

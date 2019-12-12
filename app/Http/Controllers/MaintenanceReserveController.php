@@ -449,27 +449,40 @@ class MaintenanceReserveController extends Controller
      $total = Total::find($id);
 
      $totals = Total::where('aircraft_id',$total->aircraft_id)->where('engine1_id',$total->engine1_id)->where('id','>=',$id)->get();
+     $csnold=0;
+     $tsnold=0;
 
       foreach($totals as $t){
-        if($request->fh > $t->fh){
-          $fhnew = $request->fh - $t->fh;
-          $t->tsn=$t->tsn + $fhnew;
-         }else if($request->fh < $t->fh){
-          $fhnew = $t->fh - $request->fh;
-          $t->tsn=$t->tsn - $fhnew;
-         }
+        if($t->id != $id){
+            $t->tsn=$tsnold + $t->fh;
+            $tsnold=$t->tsn;
+            $t->csn=$csnold + $t->fc;
+            $csnold=$t->csn;
 
-         if($request->fc > $t->fc){
-          $fcnew = $request->fc - $t->fc;
-          $t->csn=$t->csn + $fcnew;
-         }else if($request->fc < $t->fc){
-          $fcnew = $t->fc - $request->fc;
-          $t->csn=$t->csn - $fcnew;
-         }
+        }else if($t->id == $id){
+          if($request->fh > $t->fh){
+            $fhnew = $request->fh - $t->fh;
+            $t->tsn=$t->tsn + $fhnew;
+            $tsnold=$t->tsn;
+            $t->fh=$request->fh;
+          }else if($request->fh < $t->fh){
+            $fhnew = $t->fh - $request->fh;
+            $t->tsn=$t->tsn - $fhnew;
+            $tsnold=$t->tsn;
+            $t->fh=$request->fh;
+          }
 
-         if($t->id == $id){
-          $t->fh=$request->fh;
-          $t->fc=$request->fc;
+          if($request->fc > $t->fc){
+            $fcnew = $request->fc - $t->fc;
+            $t->csn=$t->csn + $fcnew;
+            $csnold=$t->csn;
+            $t->fc=$request->fc;
+          }else if($request->fc < $t->fc){
+            $fcnew = $t->fc - $request->fc;
+            $t->csn=$t->csn - $fcnew;
+            $csnold=$t->csn;
+            $t->fc=$request->fc;
+          }
          }
     
          $t->save();
@@ -504,26 +517,40 @@ class MaintenanceReserveController extends Controller
 
     $totals = Total::where('aircraft_id',$total->aircraft_id)->where('engine2_id',$total->engine2_id)->where('id','>=',$id)->get();
 
+    $csnold=0;
+    $tsnold=0;
+
      foreach($totals as $t){
-       if($request->fh > $t->fh){
-         $fhnew = $request->fh - $t->fh;
-         $t->tsn=$t->tsn + $fhnew;
-        }else if($request->fh < $t->fh){
-         $fhnew = $t->fh - $request->fh;
-         $t->tsn=$t->tsn - $fhnew;
-        }
+       if($t->id != $id){
+           $t->tsn=$tsnold + $t->fh;
+           $tsnold=$t->tsn;
+           $t->csn=$csnold + $t->fc;
+           $csnold=$t->csn;
 
-        if($request->fc > $t->fc){
-         $fcnew = $request->fc - $t->fc;
-         $t->csn=$t->csn + $fcnew;
-        }else if($request->fc < $t->fc){
-         $fcnew = $t->fc - $request->fc;
-         $t->csn=$t->csn - $fcnew;
-        }
+       }else if($t->id == $id){
+         if($request->fh > $t->fh){
+           $fhnew = $request->fh - $t->fh;
+           $t->tsn=$t->tsn + $fhnew;
+           $tsnold=$t->tsn;
+           $t->fh=$request->fh;
+         }else if($request->fh < $t->fh){
+           $fhnew = $t->fh - $request->fh;
+           $t->tsn=$t->tsn - $fhnew;
+           $tsnold=$t->tsn;
+           $t->fh=$request->fh;
+         }
 
-        if($t->id == $id){
-         $t->fh=$request->fh;
-         $t->fc=$request->fc;
+         if($request->fc > $t->fc){
+           $fcnew = $request->fc - $t->fc;
+           $t->csn=$t->csn + $fcnew;
+           $csnold=$t->csn;
+           $t->fc=$request->fc;
+         }else if($request->fc < $t->fc){
+           $fcnew = $t->fc - $request->fc;
+           $t->csn=$t->csn - $fcnew;
+           $csnold=$t->csn;
+           $t->fc=$request->fc;
+         }
         }
    
         $t->save();
@@ -559,26 +586,40 @@ class MaintenanceReserveController extends Controller
 
    $totals = Total::where('aircraft_id',$total->aircraft_id)->where('airframe_id',$total->airframe_id)->where('id','>=',$id)->get();
 
+   $csnold=0;
+   $tsnold=0;
+
     foreach($totals as $t){
-      if($request->fh > $t->fh){
-        $fhnew = $request->fh - $t->fh;
-        $t->tsn=$t->tsn + $fhnew;
-       }else if($request->fh < $t->fh){
-        $fhnew = $t->fh - $request->fh;
-        $t->tsn=$t->tsn - $fhnew;
-       }
+      if($t->id != $id){
+          $t->tsn=$tsnold + $t->fh;
+          $tsnold=$t->tsn;
+          $t->csn=$csnold + $t->fc;
+          $csnold=$t->csn;
 
-       if($request->fc > $t->fc){
-        $fcnew = $request->fc - $t->fc;
-        $t->csn=$t->csn + $fcnew;
-       }else if($request->fc < $t->fc){
-        $fcnew = $t->fc - $request->fc;
-        $t->csn=$t->csn - $fcnew;
-       }
+      }else if($t->id == $id){
+        if($request->fh > $t->fh){
+          $fhnew = $request->fh - $t->fh;
+          $t->tsn=$t->tsn + $fhnew;
+          $tsnold=$t->tsn;
+          $t->fh=$request->fh;
+        }else if($request->fh < $t->fh){
+          $fhnew = $t->fh - $request->fh;
+          $t->tsn=$t->tsn - $fhnew;
+          $tsnold=$t->tsn;
+          $t->fh=$request->fh;
+        }
 
-       if($t->id == $id){
-        $t->fh=$request->fh;
-        $t->fc=$request->fc;
+        if($request->fc > $t->fc){
+          $fcnew = $request->fc - $t->fc;
+          $t->csn=$t->csn + $fcnew;
+          $csnold=$t->csn;
+          $t->fc=$request->fc;
+        }else if($request->fc < $t->fc){
+          $fcnew = $t->fc - $request->fc;
+          $t->csn=$t->csn - $fcnew;
+          $csnold=$t->csn;
+          $t->fc=$request->fc;
+        }
        }
   
        $t->save();
@@ -614,26 +655,40 @@ class MaintenanceReserveController extends Controller
 
    $totals = Total::where('aircraft_id',$total->aircraft_id)->where('apu_id',$total->apu_id)->where('id','>=',$id)->get();
 
+   $csnold=0;
+   $tsnold=0;
+
     foreach($totals as $t){
-      if($request->fh > $t->fh){
-        $fhnew = $request->fh - $t->fh;
-        $t->tsn=$t->tsn + $fhnew;
-       }else if($request->fh < $t->fh){
-        $fhnew = $t->fh - $request->fh;
-        $t->tsn=$t->tsn - $fhnew;
-       }
+      if($t->id != $id){
+          $t->tsn=$tsnold + $t->fh;
+          $tsnold=$t->tsn;
+          $t->csn=$csnold + $t->fc;
+          $csnold=$t->csn;
 
-       if($request->fc > $t->fc){
-        $fcnew = $request->fc - $t->fc;
-        $t->csn=$t->csn + $fcnew;
-       }else if($request->fc < $t->fc){
-        $fcnew = $t->fc - $request->fc;
-        $t->csn=$t->csn - $fcnew;
-       }
+      }else if($t->id == $id){
+        if($request->fh > $t->fh){
+          $fhnew = $request->fh - $t->fh;
+          $t->tsn=$t->tsn + $fhnew;
+          $tsnold=$t->tsn;
+          $t->fh=$request->fh;
+        }else if($request->fh < $t->fh){
+          $fhnew = $t->fh - $request->fh;
+          $t->tsn=$t->tsn - $fhnew;
+          $tsnold=$t->tsn;
+          $t->fh=$request->fh;
+        }
 
-       if($t->id == $id){
-        $t->fh=$request->fh;
-        $t->fc=$request->fc;
+        if($request->fc > $t->fc){
+          $fcnew = $request->fc - $t->fc;
+          $t->csn=$t->csn + $fcnew;
+          $csnold=$t->csn;
+          $t->fc=$request->fc;
+        }else if($request->fc < $t->fc){
+          $fcnew = $t->fc - $request->fc;
+          $t->csn=$t->csn - $fcnew;
+          $csnold=$t->csn;
+          $t->fc=$request->fc;
+        }
        }
   
        $t->save();
@@ -667,26 +722,40 @@ class MaintenanceReserveController extends Controller
 
    $totals = Total::where('aircraft_id',$total->aircraft_id)->where('landing_id',$total->landing_id)->where('id','>=',$id)->get();
 
+   $csnold=0;
+   $tsnold=0;
+
     foreach($totals as $t){
-      if($request->fh > $t->fh){
-        $fhnew = $request->fh - $t->fh;
-        $t->tsn=$t->tsn + $fhnew;
-       }else if($request->fh < $t->fh){
-        $fhnew = $t->fh - $request->fh;
-        $t->tsn=$t->tsn - $fhnew;
-       }
+      if($t->id != $id){
+          $t->tsn=$tsnold + $t->fh;
+          $tsnold=$t->tsn;
+          $t->csn=$csnold + $t->fc;
+          $csnold=$t->csn;
 
-       if($request->fc > $t->fc){
-        $fcnew = $request->fc - $t->fc;
-        $t->csn=$t->csn + $fcnew;
-       }else if($request->fc < $t->fc){
-        $fcnew = $t->fc - $request->fc;
-        $t->csn=$t->csn - $fcnew;
-       }
+      }else if($t->id == $id){
+        if($request->fh > $t->fh){
+          $fhnew = $request->fh - $t->fh;
+          $t->tsn=$t->tsn + $fhnew;
+          $tsnold=$t->tsn;
+          $t->fh=$request->fh;
+        }else if($request->fh < $t->fh){
+          $fhnew = $t->fh - $request->fh;
+          $t->tsn=$t->tsn - $fhnew;
+          $tsnold=$t->tsn;
+          $t->fh=$request->fh;
+        }
 
-       if($t->id == $id){
-        $t->fh=$request->fh;
-        $t->fc=$request->fc;
+        if($request->fc > $t->fc){
+          $fcnew = $request->fc - $t->fc;
+          $t->csn=$t->csn + $fcnew;
+          $csnold=$t->csn;
+          $t->fc=$request->fc;
+        }else if($request->fc < $t->fc){
+          $fcnew = $t->fc - $request->fc;
+          $t->csn=$t->csn - $fcnew;
+          $csnold=$t->csn;
+          $t->fc=$request->fc;
+        }
        }
   
        $t->save();

@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/icon/garuda.jpg">
+    <link rel="shortcut icon" href="{{  asset('/images/icon/garuda.jpg')  }}">
 
     <!-- Title Page-->
     <title>@yield('title')</title>
@@ -183,7 +183,7 @@
                         </li>
                         <li class="{{ request()->is('angine') ? 'active' : '' }}">
                             <a href="{{ url('/engine') }}">
-                                <i class="fas fa-plane"></i>Engine</a>
+                                <i class="fas fa-cog"></i>Engine</a>
                         </li>
                       
                         <li class="{{ request()->is('aircraft-list') ? 'active' : '' }}">
@@ -216,7 +216,7 @@
                         </li>
                         <li class="{{ request()->is('angine') ? 'active' : '' }}">
                             <a href="{{ url('/engine') }}">
-                                <i class="fas fa-plane"></i>Engine</a>
+                                <i class="fas fa-cog"></i>Engine</a>
                         </li>
                       
                         <li class="{{ request()->is('aircraft-list') ? 'active' : '' }}">
@@ -246,7 +246,7 @@
                         </li>
                         <li class="{{ request()->is('angine') ? 'active' : '' }}">
                             <a href="{{ url('/engine') }}">
-                                <i class="fas fa-plane"></i>Engine</a>
+                                <i class="fas fa-cog"></i>Engine</a>
                         </li>
                       
                         <li class="{{ request()->is('aircraft-list') ? 'active' : '' }}">
@@ -424,13 +424,10 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="{{ url('profile') }}">
+                                                    <a href="/profile/{{ Auth::user()->id }}">
                                                         <i class="zmdi zmdi-account"></i>Account</a>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="{{ url('setting-user') }}">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
+                                               
                                         
                                             </div>
                                             <div class="account-dropdown__footer">

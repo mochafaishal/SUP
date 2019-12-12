@@ -62,13 +62,30 @@
                                             <tr>
                                                 <td>FC</td>
                                                 <td class="text-left">{{$total->fc}}</td>
-                                            <tr>
+                                            <tr> 
                                                 <td>TSN</td>
-                                                <td class="text-left">{{$total->tsn}}</td>
+                                                @if( $total->tsn %17000  == 0)
+
+                                                    <td class="text-left"> {{$total->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                @elseif( $total->tsn %17001  == 0)
+
+                                                    <td class="text-left"> {{$total->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+
+                                                @else
+                                                    <td class="text-left"> {{$total->tsn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                             <tr>
                                                 <td>CSN</td>
-                                                <td class="text-left">{{$total->csn}}</td>
+                                                @if($total->csn %8000 == 0)
+                                                
+                                                    <td class="text-left"> {{$total->csn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$total->csn}} </td>
+                                            
+                                                @endif
                                             </tr>
                                         </tbody>
                                     </table>
@@ -111,11 +128,25 @@
                                             </tr>
                                             <tr> 
                                                 <td>TSN</td>
-                                                <td class="text-left">{{$totalengine2->tsn}}</td>
+                                                @if($totalengine2->tsn %17000 == 0)
+                                                
+                                                    <td class="text-left"> {{$totalengine2->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totalengine2->tsn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                             <tr>
                                                 <td>CSN</td>
-                                                <td class="text-left">{{$totalengine2->csn}}</td>
+                                                @if($totalengine2->csn %8000 == 0)
+                                                
+                                                    <td class="text-left"> {{$totalengine2->csn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totalengine2->csn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                         </tbody>
                                     </table>
@@ -153,11 +184,25 @@
                                             </tr>
                                             <tr>
                                                 <td>TSN</td>
-                                                <td class="text-left">{{$totalairframe->tsn}}</td>
+                                                @if($totalairframe->tsn %17000 == 0)
+                                                
+                                                    <td class="text-left"> {{$totalairframe->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totalairframe->tsn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                             <tr>
                                                 <td>CSN</td>
-                                                <td class="text-left">{{$totalairframe->csn}}</td>
+                                                @if($totalairframe->csn %8000 == 0)
+                                                
+                                                    <td class="text-left"> {{$totalairframe->csn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totalairframe->csn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                         </tbody>
                                     </table>
@@ -196,11 +241,25 @@
                                             </tr>
                                             <tr>
                                                 <td>TSN</td>
-                                                <td class="text-left">{{$totalapu->tsn}}</td>
+                                                @if($totalapu->tsn %17000 == 0)
+                                                
+                                                    <td class="text-left"> {{$totalapu->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totalapu->tsn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                             <tr>
                                                 <td>CSN</td>
-                                                <td class="text-left">{{$totalapu->csn}}</td>
+                                                @if($totalapu->csn %8000 == 0)
+                                                
+                                                    <td class="text-left"> {{$totalapu->csn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totalapu->csn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                         </tbody>
                                     </table>
@@ -239,11 +298,25 @@
                                             </tr>
                                             <tr>
                                                 <td>TSN</td>
-                                                <td class="text-left">{{$totallanding->tsn}}</td>
+                                                @if($totallanding->tsn %17000 == 0)
+                                                
+                                                    <td class="text-left"> {{$$totallanding->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totallanding->tsn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                             <tr>
                                                 <td>CSN</td>
-                                                <td class="text-left">{{$totallanding->csn}}</td>
+                                                @if($totallanding->csn %8000 == 0)
+                                                
+                                                    <td class="text-left"> {{$totallanding->csn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @else
+                                                    <td class="text-left"> {{$totallanding->csn}} </td>
+                                                
+                                                @endif
                                             </tr>
                                         </tbody>
                                     </table>
