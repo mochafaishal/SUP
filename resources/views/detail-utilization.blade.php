@@ -132,6 +132,19 @@
                                                 
                                                     <td class="text-left"> {{$totalengine2->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
                                                 
+                                                @elseif($totalengine2->tsn %17001 == 0)
+
+                                                    <td class="text-left"> {{$totalengine2->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                
+                                                @elseif($totalengine2->tsn %17002 == 0)
+
+                                                <td class="text-left"> {{$totalengine2->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+
+                                                @elseif($totalengine2->tsn %17003 == 0)
+
+                                                <td class="text-left"> {{$totalengine2->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+
+
                                                 @else
                                                     <td class="text-left"> {{$totalengine2->tsn}} </td>
                                                 
@@ -300,7 +313,7 @@
                                                 <td>TSN</td>
                                                 @if($totallanding->tsn %17000 == 0)
                                                 
-                                                    <td class="text-left"> {{$$totallanding->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
+                                                    <td class="text-left"> {{$totallanding->tsn}} <span class="badge badge-danger">Maintenance</span> </td>
                                                 
                                                 @else
                                                     <td class="text-left"> {{$totallanding->tsn}} </td>

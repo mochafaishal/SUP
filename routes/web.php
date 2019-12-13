@@ -100,7 +100,7 @@ Route::get('/maintenance', 'MaintenanceController@index')->name('maintenance');
 Route::get('/add-maintenance', 'MaintenanceController@create')->name('add-maintenance');
 Route::post('/maintenance/store', 'MaintenanceController@store');
 Route::get('/edit-maintenance/{id}', 'MaintenanceController@edit')->name('edit-maintenance');
-Route::put('/maintenance/update/{id}', 'MaintenanceController@update');
+Route::put('/maintenance1/update/{id}', 'MaintenanceController@update');
 Route::get('/maintenance/delete/{id}', 'MaintenanceController@delete');
 // ======================================================================================
 

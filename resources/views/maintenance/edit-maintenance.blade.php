@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body card-block">
 
-                <form method="post" action="/maintenance/update/{{ $maintenance->id }}">
+                <form method="post" action="/maintenance1/update/{{ $maintenance->id }}">
  
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

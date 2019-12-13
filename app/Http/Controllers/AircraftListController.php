@@ -329,11 +329,11 @@ class AircraftListController extends Controller
       
      ]);
   
-     $maintenance = Maintenanceaircraft::find($id);
-     $maintenance->aircraft_id = $request->aircraft_id;
-     $maintenance->maintenance_id = $request->maintenance_id;
+    //  $maintenance = Maintenanceaircraft::find($id);
+    //  $maintenance->aircraft_id = $request->aircraft_id;
+    //  $maintenance->maintenance_id = $request->maintenance_id;
      
-     $maintenance->save();
+    //  $maintenance->save();
 
      return redirect('/aircraft-list');
     }

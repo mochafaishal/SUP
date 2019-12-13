@@ -1,5 +1,4 @@
 @extends('layouts.master') @section('title','Edit Aircraft - Edit Maintenance') @section('content')
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -7,7 +6,7 @@
                 <div class="card-header">
                     <strong>EditMaintenance</strong>
                 </div>
-                <form action="/aircraft-maintenance/update/{{ $aircraft->maintenance->id }}" method="post">
+                <form action="/aircraft-maintenance/update/{{ $aircraft->maintenance }}" method="post">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
